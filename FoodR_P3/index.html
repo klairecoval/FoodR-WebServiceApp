@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<title>FoodR</title>
-	<link rel="icon" href="appIcon.png">
-<link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
-	<!--
+    <meta charset="utf-8" />
+    <title>FoodR</title>
+    <link rel="icon" href="appIcon.png">
+    <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+    <!--
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lbvHriKM5pFiQTBYAiSGeuKAJPe2IFU&libraries=places"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
@@ -14,89 +14,95 @@
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 -->
-	<!--importing pure min CSS-->
-	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <!--importing pure min CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 
-	<!--importing custom css-->
-	<link rel="stylesheet" href="main.css">
+    <!--importing custom css-->
+    <link rel="stylesheet" href="main.css">
 
-	<!-- Development Version of Vue -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-
-	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lbvHriKM5pFiQTBYAiSGeuKAJPe2IFU&libraries=places"></script>
+    <!-- Development Version of Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
 
-	<!--Bootstrap vue-->
-	<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-	<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lbvHriKM5pFiQTBYAiSGeuKAJPe2IFU&libraries=places"></script>
+
+
+
+    <!--Bootstrap vue-->
+    <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtavAkD7MAfICWIMuXrRPhlnLXSK4Q2iM&callback=app.getLocation" async defer></script>
 
 </head>
 
 <body>
-	<div id="root">
-		<h1>FoodR</h1>
-		<div id="map" style="width:100%;height:400px;"></div>
-		<!--		<input type="text" v-model="userZip">-->
+    <div id="root">
+        <h1>FoodR</h1>
+        <div id="map" style="width:100%;height:400px;"></div>
+        <!--		<input type="text" v-model="userZip">-->
 
 
-		<div id="inputAndButton">
-			<p>Enter zipcode to search for a restaurant</p>
-			<b-input-group prepend="Zipcode">
-				<b-form-input type="text" v-model="userZip"></b-form-input>
-				<b-input-group-append>
-					<b-btn variant="outline-success" @click=search>Button</b-btn>
-				</b-input-group-append>
-			</b-input-group>
-		</div>
+        <div id="inputAndButton">
+            <p>Enter zipcode to search for a restaurant</p>
+            <b-input-group prepend="Zipcode">
+                <b-form-input type="text" v-model="userZip"></b-form-input>
+                <b-input-group-append>
+                    <b-btn variant="outline-success" @click=search>Button</b-btn>
+                </b-input-group-append>
+            </b-input-group>
+        </div>
 
 
 
-		<div id="results">
-			<!--			<b-list-group-item v-for="r in result.restaurants" v-text="r.name"></b-list-group-item>-->
-			<!--			<tr is="restaurant-row" v-for="(name,address) in result.restaurants" v-bind:name="name" v-bind:address="address"></tr>-->
-			<!--			<restaurant-list v-bind:name="name" v-bind:address="address"></restaurant-list>-->
-			<restaurant-name v-for="r in result.restaurants" v-bind:name="r.name" v-bind:address="r.address" v-bind:reserve_link="r.reserve_url" v-bind:key="r.name"></restaurant-name>
-		</div>
+        <div id="results">
+            <!--			<b-list-group-item v-for="r in result.restaurants" v-text="r.name"></b-list-group-item>-->
+            <!--			<tr is="restaurant-row" v-for="(name,address) in result.restaurants" v-bind:name="name" v-bind:address="address"></tr>-->
+            <!--			<restaurant-list v-bind:name="name" v-bind:address="address"></restaurant-list>-->
+            <restaurant-name v-for="r in result.restaurants" v-bind:name="r.name" v-bind:address="r.address" v-bind:reserve_link="r.reserve_url" v-bind:key="r.name"></restaurant-name>
+        </div>
 
-		<main-footer v-bind:year="copyrightYear" v-bind:name="copyrightName"></main-footer>
+        <main-footer v-bind:year="copyrightYear" v-bind:name="copyrightName"></main-footer>
 
-	</div>
+    </div>
 
-	<script>
-		//VUE Component
-		//		Vue.component('restaurant-list-row', {
-		//			props: ['name', 'index'],
-		//			template: `<tr>
-		//					<td>{{ index }}</td>
-		//					<td v-text="name"></td>
-		//				   </tr>`
-		//		});
-		//
-		//		Vue.component('restaurant-list', {
-		//			props: ['result.name', 'address'],
-		//			template: `<div>
-		//			<b-list-group-item is="restaurant-list-row" v-for="(result.name, index) in result.restaurants" v-bind:name="name" v-bind:index="index" v-bind:address="address"></b-list-group-item>
-		//		</table>
-		//	  </div>`
-		//		});
+    <script>
+        //VUE Component
+        //		Vue.component('restaurant-list-row', {
+        //			props: ['name', 'index'],
+        //			template: `<tr>
+        //					<td>{{ index }}</td>
+        //					<td v-text="name"></td>
+        //				   </tr>`
+        //		});
+        //
+        //		Vue.component('restaurant-list', {
+        //			props: ['result.name', 'address'],
+        //			template: `<div>
+        //			<b-list-group-item is="restaurant-list-row" v-for="(result.name, index) in result.restaurants" v-bind:name="name" v-bind:index="index" v-bind:address="address"></b-list-group-item>
+        //		</table>
+        //	  </div>`
+        //		});
 
-		Vue.component('restaurant-name', {
-			props: ['name', 'address', 'reserve_link'],
-			template: '<b-list-group-item>{{ name }} <br> {{ address }} <br> {{ reserve_link }} </b-list-group-item>'
-		});
+        Vue.component('restaurant-name', {
+            props: ['name', 'address', 'reserve_link'],
+            template: '<b-list-group-item>{{ name }} <br> {{ address }} <br> {{ reserve_link }} </b-list-group-item>'
+        });
 
-		Vue.component('main-footer', {
-			props: ['year', 'name'],
-			template: `<footer class="muted" style="text-align:center">
+        Vue.component('main-footer', {
+            props: ['year', 'name'],
+            template: `<footer class="muted" style="text-align:center">
 		   &copy; {{ year }} {{ name }}
 		   </footer>`
-		});
+        });
 
 
 
@@ -104,134 +110,141 @@
 
 
 
-		//ES6 Class for Testing
-		class Restaurant {
-			constructor(userZip) {
-				this.zip = userZip; // calls setter
-			}
-			get zip() {
-				return this._zip;
-			}
-			set zip(userZip) {
-				// truncate newName if it's too long
-				if (userZip.length > this.constructor.maxLength) {
-					userZip = userZip.slice(0, this.constructor.maxNameLength);
-				}
-				this._zip = userZip;
-			}
-		}
-		Restaurant.maxLength = 5; // a class variable
+        //ES6 Class for Testing
+        class Restaurant {
+            constructor(userZip) {
+                this.zip = userZip; // calls setter
+            }
+            get zip() {
+                return this._zip;
+            }
+            set zip(userZip) {
+                // truncate newName if it's too long
+                if (userZip.length > this.constructor.maxLength) {
+                    userZip = userZip.slice(0, this.constructor.maxNameLength);
+                }
+                this._zip = userZip;
+            }
+        }
+        Restaurant.maxLength = 5; // a class variable
 
-		//VUE
-		const app = new Vue({
-			el: '#root',
-			data: {
-				copyrightName: "Claire Koval",
-				copyrightYear: "2018",
+        //VUE
+        var app = new Vue({
+            el: '#root',
+            data: {
+                copyrightName: "Claire Koval",
+                copyrightYear: "2018",
 
-				userZip: "",
-				result: {
-					restaurants: [{
-						name: "Loading...",
-						address: "Loading...",
-						reserve_link: "Loading..."
-					}],
-					map: new google.maps.Map(document.getElementById('map'), {
-						center: {
-							lat: 43.083848,
-							lng: -77.6799
-						},
-						zoom: 8
-					}),
-					infoWindow: ""
-				}
-			},
-			mounted: function() {
-				const element = document.getElementById('map');
-				const options = {
-					zoom: 14,
-					center: new google.maps.LatLng(43.083848, -77.6799)
-				}
-				const map = new google.maps.Map(element, options);
-			},
-			methods: {
-				search() {
-					if (this.userZip == "") {
-						this.userZip = 14623;
-						alert("Please input a valid zipcode. Defaulting to Henrietta, NY");
-					}
-					let link = "http://opentable.herokuapp.com/api/restaurants?zip=" + this.userZip;
-					const element = document.getElementById('map');
-					const options = {
-						zoom: 14,
-						center: new google.maps.LatLng(43.083848, -77.6799)
-					}
-					const map = new google.maps.Map(element, options);
-					console.log(link);
-					fetch(link)
-						// callback function - 2 chained callbacks total
-						.then(response => { // response property
-							if (!response.ok) { // we want the ok property to throw an error if the response is bad
-								throw Error(`ERROR: ${response.statusText}`);
-							}
-							// if it's good, return the json we got back
-							return response.json();
-						})
-						// goes to this json if everything works?
-						.then(json => {
-							console.log(json); // logging out the results
-							this.result = json;
-							this.restaurants = this.result.restaurants;
-							let r;
+                userZip: "",
+                result: {
+                    restaurants: [{
+                        name: "Loading...",
+                        address: "Loading...",
+                        reserve_link: "Loading..."
+                    }],
+                    infoWindow: ""
+                }
+            },
+            methods: {
+                search() {
+                    if (this.userZip == "") {
+                        this.userZip = 14623;
+                        alert("Please input a valid zipcode. Defaulting to Henrietta, NY");
+                    }
+                    let link = "http://opentable.herokuapp.com/api/restaurants?zip=" + this.userZip;
+                    console.log(link);
+                    fetch(link)
+                        // callback function - 2 chained callbacks total
+                        .then(response => { // response property
+                            if (!response.ok) { // we want the ok property to throw an error if the response is bad
+                                throw Error(`ERROR: ${response.statusText}`);
+                            }
+                            // if it's good, return the json we got back
+                            return response.json();
+                        })
+                        // goes to this json if everything works?
+                        .then(json => {
+                            console.log(json); // logging out the results
+                            this.result = json;
+                            this.restaurants = this.result.restaurants;
+                            let r;
 
-							for (r = 0; r < this.result.restaurants.length; r++) {
-								console.log(this.result.restaurants[r].name);
-								console.log(this.result.restaurants[r].address);
+                            for (r = 0; r < this.result.restaurants.length; r++) {
+                                console.log(this.result.restaurants[r].name);
+                                console.log(this.result.restaurants[r].address);
 
 
-								var closeRestaurant = this.result.restaurants[r];
+                                var closeRestaurant = this.result.restaurants[r];
 
 
-								var lat = closeRestaurant.lat;
-								var long = closeRestaurant.lng;
-								var title = closeRestaurant.name;
+                                var lat = closeRestaurant.lat;
+                                var long = closeRestaurant.lng;
+                                var title = closeRestaurant.name;
+                                addMarker(lat, long, title);
+                            }
 
-								addMarker(lat, long, title);
-							}
+                            function addMarker(latitude, longitude, title) {
+                                let position = {
+                                    lat: latitude,
+                                    lng: longitude
+                                };
+                                let marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map
+                                });
+                                marker.setTitle(title);
 
-							function addMarker(latitude, longitude, title) {
-								let position = {
-									lat: latitude,
-									lng: longitude
-								};
-								let marker = new google.maps.Marker({
-									position: position,
-									map: map
-								});
-								marker.setTitle(title);
+                                //add a listener for the click event
+                                google.maps.event.addListener(marker, 'click', function(e) {
+                                    makeInfoWindow(this.position, this.title);
+                                })
+                            }
 
-								//add a listener for the click event
-								google.maps.event.addListener(marker, 'click', function(e) {
-									makeInfoWindow(this.position, this.title);
-								})
-							}
+                            function makeInfoWindow(position, msg) {
+                                //Close old infowindow if it exists
+                                if (this.infowindow) this.infowindow.close();
 
-							function makeInfoWindow(position, msg) {
-								//Close old infowindow if it exists
-								if (this.infowindow) this.infowindow.close();
+                                this.infowindow = new google.maps.InfoWindow({
+                                    map: map,
+                                    position: position,
+                                    content: "<b>" + msg + "</b>"
+                                })
+                            }
 
-								this.infowindow = new google.maps.InfoWindow({
-									map: map,
-									position: position,
-									content: "<b>" + msg + "</b>"
-								})
-							}
-
-						})
-				}
-			}
-		});
-	</script>
+                        })
+                },
+                myMap(userLat, userLng) {
+                    const userLoc = new google.maps.LatLng(userLat, userLng);
+                    const mapProp = {
+                        center: userLoc,
+                        zoom: 12,
+                    };
+                    map = new google.maps.Map(document.getElementById("map"), mapProp);
+                    const marker = new google.maps.Marker({
+                        position: {
+                            lat: userLat,
+                            lng: userLng
+                        },
+                        map,
+                        title: 'You are here!'
+                    });
+                },
+                //Get user location and show pin if enabled
+                getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(app.showPosition);
+                    } else {
+                        window.alert("Geolocation is not supported by this browser.");
+                    }
+                },
+                showPosition(position) {
+                    console.log(`Latitude: ${position.coords.latitude}`);
+                    console.log(`Longitude: ${position.coords.longitude}`);
+                    app.myMap(position.coords.latitude, position.coords.longitude);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
