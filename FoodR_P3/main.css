@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Changa+One');
+
+#inputAndButton {
+	width: 900px;
+	align-content: center;
+	margin: 0 auto;
+}
+
+#results {
+	width: 900px;
+	align-content: center;
+	margin: 0 auto;
+	line-height: 2em;
+}
+
+footer {
+	margin-top: 8em;
+}
+
+body {
+	color: #18354C !important;
+}
+
+h1 {
+	align-content: center;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Changa One', cursive !important;
+}
