@@ -4,42 +4,31 @@
 <head>
     <meta charset="utf-8" />
     <title>FoodR</title>
+    
+    <!--set icon to custon image-->
     <link rel="icon" href="appIcon.png">
+    
+    <!--import font from google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
-    <!--
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lbvHriKM5pFiQTBYAiSGeuKAJPe2IFU&libraries=places"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
--->
-    <!--importing pure min CSS-->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 
-    <!--importing custom css-->
+    <!--import custom css-->
     <link rel="stylesheet" href="main.css">
 
-    <!-- Development Version of Vue -->
+    <!--development version of vue-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-
+    <!--import bootstrap-->
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
 
+    <!--import jquery-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2lbvHriKM5pFiQTBYAiSGeuKAJPe2IFU&libraries=places"></script>
 
-
-
-    <!--Bootstrap vue-->
+    <!--bootstrap vue-->
     <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-
-
-
-
-
+    
+    <!--import google maps with callback function to get location initially-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtavAkD7MAfICWIMuXrRPhlnLXSK4Q2iM&callback=app.getLocation" async defer></script>
 
 </head>
@@ -48,15 +37,12 @@
     <div id="root">
         <h1>FoodR</h1>
         <div id="map" style="width:100%;height:400px;"></div>
-        <!--		<input type="text" v-model="userZip">-->
-
-
         <div id="inputAndButton">
             <p>Enter zipcode to search for a restaurant</p>
             <b-input-group prepend="Zipcode">
                 <b-form-input type="text" v-model="userZip"></b-form-input>
                 <b-input-group-append>
-                    <b-btn variant="outline-success" @click=search>Button</b-btn>
+                    <b-btn id="searchButton" variant="outline-success" @click=search>Search</b-btn>
                 </b-input-group-append>
             </b-input-group>
         </div>
@@ -64,9 +50,6 @@
 
 
         <div id="results">
-            <!--			<b-list-group-item v-for="r in result.restaurants" v-text="r.name"></b-list-group-item>-->
-            <!--			<tr is="restaurant-row" v-for="(name,address) in result.restaurants" v-bind:name="name" v-bind:address="address"></tr>-->
-            <!--			<restaurant-list v-bind:name="name" v-bind:address="address"></restaurant-list>-->
             <restaurant-name v-for="r in result.restaurants" v-bind:name="r.name" v-bind:address="r.address" v-bind:reserve_link="r.reserve_url" v-bind:key="r.name"></restaurant-name>
         </div>
 
@@ -76,25 +59,9 @@
 
     <script>
         //VUE Component
-        //		Vue.component('restaurant-list-row', {
-        //			props: ['name', 'index'],
-        //			template: `<tr>
-        //					<td>{{ index }}</td>
-        //					<td v-text="name"></td>
-        //				   </tr>`
-        //		});
-        //
-        //		Vue.component('restaurant-list', {
-        //			props: ['result.name', 'address'],
-        //			template: `<div>
-        //			<b-list-group-item is="restaurant-list-row" v-for="(result.name, index) in result.restaurants" v-bind:name="name" v-bind:index="index" v-bind:address="address"></b-list-group-item>
-        //		</table>
-        //	  </div>`
-        //		});
-
         Vue.component('restaurant-name', {
             props: ['name', 'address', 'reserve_link'],
-            template: '<b-list-group-item>{{ name }} <br> {{ address }} <br> {{ reserve_link }} </b-list-group-item>'
+            template: '<b-list-group-item> <span id="test">{{ name }} </span><br> {{ address }} <br> {{ reserve_link }}</b-list-group-item>'
         });
 
         Vue.component('main-footer', {
@@ -103,12 +70,6 @@
 		   &copy; {{ year }} {{ name }}
 		   </footer>`
         });
-
-
-
-
-
-
 
         //ES6 Class for Testing
         class Restaurant {
@@ -182,7 +143,6 @@
                                 var title = closeRestaurant.name;
                                 addMarker(lat, long, title);
                             }
-
                             function addMarker(latitude, longitude, title) {
                                 let position = {
                                     lat: latitude,
@@ -217,7 +177,7 @@
                     const userLoc = new google.maps.LatLng(userLat, userLng);
                     const mapProp = {
                         center: userLoc,
-                        zoom: 12,
+                        zoom: 8,
                     };
                     map = new google.maps.Map(document.getElementById("map"), mapProp);
                     const marker = new google.maps.Marker({
