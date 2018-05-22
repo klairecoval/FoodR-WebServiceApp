@@ -1,2 +1,2 @@
 # FoodR-WebServiceApp
-An extension of the FoodR iOS app
+An extension of the FindR iOS app, focusing on reservations
