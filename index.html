@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>FoodR</title>
+
+	<!--set icon to custon image-->
+	<link rel="icon" href="images/appIcon.png">
+
+	<!--import font from google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Changa+One" rel="stylesheet">
+
+	<!--import custom css-->
+	<link rel="stylesheet" href="css/main.css">
+
+	<!--development version of vue-->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<!--import bootstrap-->
+	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+	<!--import jquery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!--bootstrap vue-->
+	<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+	<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+	<!--import google maps with callback function to get location initially-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtavAkD7MAfICWIMuXrRPhlnLXSK4Q2iM&callback=app.getLocation" async defer></script>
+</head>
+
+<body>
+	<div id="root">
+		<h1 class="in-from-top">FoodR</h1>
+
+		<!--map div-->
+		<div id="map" style="width:100%;height:400px;"></div>
+
+		<!--input and button-->
+		<div id="inputAndButton">
+			<br>
+			<p class="in-from-top">Enter zip code to search for a restaurant that takes reservations</p>
+			<b-input-group prepend="ZipCode">
+				<b-form-input v-b-popover.hover.top="'Enter a 5-digit zip code'" type="text" v-model="userZip"></b-form-input>
+				<b-input-group-append>
+					<b-btn id="searchButton" variant="outline-success" @click=search>Search</b-btn>
+				</b-input-group-append>
+			</b-input-group>
+		</div>
+
+		<div id="results">
+			<!--VUE components-->
+			<places-number v-bind:num_places="result.restaurants.length"></places-number>
+			<restaurant-name v-for="r in result.restaurants" v-bind:name="r.name" v-bind:address="r.address" v-bind:reserve_link="r.reserve_url" v-bind:key="r.name"></restaurant-name>
+		</div>
+
+		<!--VUE component-->
+		<main-footer v-bind:year="copyrightYear" v-bind:name="copyrightName"></main-footer>
+
+	</div>
+
+	<script src="js/vue-components.js"></script>
+	<script src="js/es6-test-class.js"></script>
+	<script src="js/main-vue.js"></script>
+</body>
+
+</html>

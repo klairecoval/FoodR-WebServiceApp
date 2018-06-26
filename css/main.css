@@ -1,0 +1,92 @@
+/*import google font*/
+
+@import url('https://fonts.googleapis.com/css?family=Changa+One');
+
+#inputAndButton {
+	width: 900px;
+	align-content: center;
+	margin: 0 auto;
+}
+
+#results {
+	width: 900px;
+	align-content: center;
+	margin: 0 auto;
+	line-height: 2em;
+}
+
+footer {
+	margin-top: 8em;
+}
+
+/*!important overrides bootstrap css*/
+
+body {
+	color: #18354C !important;
+	background-image: url("../images/food.png");
+}
+
+h1 {
+	align-content: center;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Changa One', cursive !important;
+	font-size: 4em !important;
+	/*hit 'em with that drop shaddow*/
+	text-shadow: 2px 2px #94bdc9 !important;
+}
+
+#name {
+	font-weight: bold;
+	font-family: 'Changa One', cursive !important;
+	font-size: 1.4em;
+}
+
+#searchButton {
+	background: #94BDC9;
+	color: #18354C !important;
+	border: #94BDC9;
+}
+
+#searchButton:hover {
+	background: #FFB325;
+}
+
+#restaurantData {
+	background: #FFB325;
+}
+
+/*fade in using css animations*/
+.fade-in {
+	animation: fading 5s
+}
+
+@keyframes fading {
+	0% {
+		opacity: 0
+	}
+	50% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+
+}
+
+/*load in/fly in from top*/
+.in-from-top {
+	position: relative;
+	animation: animatetop 0.4s
+}
+
+@keyframes animatetop {
+	from {
+		top: -200px;
+		opacity: 0
+	}
+	to {
+		top: 0;
+		opacity: 1
+	}
+}
