@@ -73,6 +73,7 @@
 								google.maps.event.addListener(marker, 'click', function (e) {
 									makeInfoWindow(this.position, this.title);
 								})
+								map.panTo(position);
 							}
 
 							//make info windows at spot of restuarant/clicked with name of restaurant as title (passed in)
